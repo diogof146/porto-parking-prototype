@@ -182,31 +182,50 @@ export default function StrategicMap({ selectedCorridor, onSelectHub }) {
       <VCIRing />
 
       {/* Metro lines */}
-      {data.metroLines.map((line) => (
-        <Polyline
-          key={line.id}
-          positions={line.path}
-          pathOptions={{
-            color: line.color,
-            weight: corridor && corridor.metroLine === line.id ? 4 : 2,
-            opacity: corridor
-              ? corridor.metroLine === line.id
-                ? 0.9
-                : 0.2
-              : 0.5,
-          }}
-        >
-          <Popup>
-            <div>
-              <strong style={{ color: line.color }}>{line.name}</strong>
-              <br />
-              <span style={{ fontSize: 11, color: "#6b7280" }}>
-                {line.stations.length} stations
-              </span>
-            </div>
-          </Popup>
-        </Polyline>
-      ))}
+      {data.metroLines.map((line) => {
+        const isActive = corridor && corridor.metroLine === line.id;
+        const lineOpacity = corridor
+          ? isActive
+            ? 0.9
+            : 0.2
+          : 0.5;
+        return (
+          <span key={line.id}>
+            <Polyline
+              positions={line.path}
+              pathOptions={{
+                color: line.color,
+                weight: isActive ? 4 : 2,
+                opacity: lineOpacity,
+              }}
+            >
+              <Popup>
+                <div>
+                  <strong style={{ color: line.color }}>{line.name}</strong>
+                  <br />
+                  <span style={{ fontSize: 11, color: "#6b7280" }}>
+                    {line.stations.length} stations
+                  </span>
+                </div>
+              </Popup>
+            </Polyline>
+            {line.path.map((coords, i) => (
+              <CircleMarker
+                key={`${line.id}-station-${i}`}
+                center={coords}
+                radius={isActive ? 5 : 4}
+                pathOptions={{
+                  color: line.color,
+                  weight: 1.5,
+                  fillColor: "#ffffff",
+                  fillOpacity: lineOpacity,
+                  opacity: lineOpacity,
+                }}
+              />
+            ))}
+          </span>
+        );
+      })}
 
       {/* Hub markers */}
       {data.hubs.map((hub) => (

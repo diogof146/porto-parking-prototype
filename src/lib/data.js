@@ -14,18 +14,18 @@ export const data = {
   // 6 strategy hubs around the VCI ring
   hubs: [
     {
-      id: "ismai",
-      name: "ISMAI / Castêlo da Maia",
-      shortName: "ISMAI",
-      coords: [41.2615, -8.6195],
+      id: "candido-dos-reis",
+      name: "Cândido dos Reis",
+      shortName: "C. dos Reis",
+      coords: [41.2007, -8.6323],
       position: "North (12 o'clock)",
       captures: "A3 from Braga/Minho",
       capturesTraffic: "~90,000 vehicles/day",
       metro: ["C"],
-      metroTime: "~30 min to Trindade",
-      score: 23,
+      metroTime: "~22 min to Trindade",
+      score: 19,
       priority: 2,
-      why: "A3 motorway meets metro area — massive volume, ISMAI already a de facto hub",
+      why: "Closer to VCI ring, suburban Maia with available land — intercepts northern traffic",
     },
     {
       id: "dragao",
@@ -95,8 +95,8 @@ export const data = {
       id: "a3-north",
       name: "A3 — From Braga / North",
       description: "Minho, Guimarães, Braga",
-      hubId: "ismai",
-      entryCoords: [41.30, -8.62],
+      hubId: "candido-dos-reis",
+      entryCoords: [41.25, -8.64],
       metroLine: "C",
       destination: "Trindade",
       journey: {
