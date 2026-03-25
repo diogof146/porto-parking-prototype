@@ -12,8 +12,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Porto Robotaxi Transition — Strategic Map",
-  description: "Mapping Porto's parking infrastructure against the robotaxi future",
+  title: "Porto Car-Free Centre — Mobility Hub Strategy",
+  description: "How Porto can intercept traffic at VCI ring hubs and create a car-free city centre",
 };
 
 export default function RootLayout({ children }) {

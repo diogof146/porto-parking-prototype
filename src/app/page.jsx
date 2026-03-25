@@ -2,7 +2,8 @@
 
 import dynamic from "next/dynamic";
 import Sidebar from "./components/Sidebar";
-import { useState } from "react";
+import { useState, useCallback } from "react";
+import { data } from "@/lib/data";
 
 const StrategicMap = dynamic(() => import("./components/StrategicMap"), {
   ssr: false,
@@ -14,19 +15,27 @@ const StrategicMap = dynamic(() => import("./components/StrategicMap"), {
 });
 
 export default function Home() {
-  const [activeView, setActiveView] = useState("garages"); // garages | hubs | both
-  const [rideDistance, setRideDistance] = useState(7);
+  const [selectedCorridor, setSelectedCorridor] = useState(null);
+
+  // When a hub is clicked on the map, select its corridor
+  const handleSelectHub = useCallback((hubId) => {
+    const corridor = data.corridors.find((c) => c.hubId === hubId);
+    if (corridor) {
+      setSelectedCorridor(corridor.id);
+    }
+  }, []);
 
   return (
     <div className="h-full flex">
       <Sidebar
-        activeView={activeView}
-        setActiveView={setActiveView}
-        rideDistance={rideDistance}
-        setRideDistance={setRideDistance}
+        selectedCorridor={selectedCorridor}
+        setSelectedCorridor={setSelectedCorridor}
       />
       <div className="flex-1 relative">
-        <StrategicMap activeView={activeView} />
+        <StrategicMap
+          selectedCorridor={selectedCorridor}
+          onSelectHub={handleSelectHub}
+        />
       </div>
     </div>
   );
