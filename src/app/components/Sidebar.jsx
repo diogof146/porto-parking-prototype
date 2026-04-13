@@ -89,11 +89,10 @@ function CorridorSelector({ selectedCorridor, onSelect }) {
             <button
               key={c.id}
               onClick={() => onSelect(active ? null : c.id)}
-              className={`text-left px-2.5 py-2 rounded-lg border text-xs transition-all ${
-                active
-                  ? "bg-[#059669] text-white border-[#059669]"
-                  : "bg-white text-gray-700 border-gray-200 hover:border-[#059669] hover:bg-emerald-50"
-              }`}
+              className={`text-left px-2.5 py-2 rounded-lg border text-xs transition-all ${active
+                ? "bg-[#059669] text-white border-[#059669]"
+                : "bg-white text-gray-700 border-gray-200 hover:border-[#059669] hover:bg-emerald-50"
+                }`}
             >
               <div className="flex items-center justify-between">
                 <span className="font-semibold text-[11px]">{c.name.split(" — ")[0]}</span>
@@ -120,7 +119,7 @@ export default function Sidebar({ selectedCorridor, setSelectedCorridor }) {
     : null;
 
   return (
-    <aside className="w-[320px] h-full bg-[var(--card)] border-r border-[var(--card-border)] flex flex-col overflow-hidden">
+    <aside className="w-full md:w-[320px] h-[45%] md:h-full shrink-0 bg-[var(--card)] border-t md:border-t-0 md:border-r border-[var(--card-border)] flex flex-col overflow-hidden">
       <div className="p-4 border-b border-[var(--card-border)]">
         <h1 className="text-sm font-semibold tracking-tight text-gray-900">
           Porto Car-Free Centre
